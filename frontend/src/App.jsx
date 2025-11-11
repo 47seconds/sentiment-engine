@@ -15,6 +15,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 // Pages
 import { LoginPage } from './pages/LoginPage';
+import { AdminRegisterPage } from './pages/AdminRegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import FeedbackPage from './pages/FeedbackPage';
 import DriversPage from './pages/DriversPage';
@@ -62,15 +63,12 @@ function App() {
             <Routes>
               {/* Public routes */}
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/admin-register" element={<AdminRegisterPage />} />
+              
+              {/* Root route - redirect based on auth status */}
+              <Route path="/" element={<Navigate to="/login" replace />} />
               
               {/* Protected routes - Admin only */}
-              <Route path="/" element={
-                <ProtectedRoute adminOnly>
-                  <MainLayout darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
-                    <Navigate to="/dashboard" replace />
-                  </MainLayout>
-                </ProtectedRoute>
-              } />
               <Route path="/dashboard" element={
                 <ProtectedRoute adminOnly>
                   <MainLayout darkMode={darkMode} toggleDarkMode={toggleDarkMode}>

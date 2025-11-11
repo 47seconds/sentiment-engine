@@ -43,15 +43,24 @@ export const LoginPage = () => {
         setLoading(true);
         
         try {
+            console.log('🔑 LoginPage: Attempting login with email:', email);
+            console.log('🔑 LoginPage: Password length:', password.length);
+            
             await login(email, password);
+            
+            console.log('🔑 LoginPage: Login successful, checking role...');
             
             // Redirect based on role
             if (isAdmin()) {
+                console.log('🔑 LoginPage: User is admin, redirecting to dashboard');
                 navigate('/dashboard');
             } else {
+                console.log('🔑 LoginPage: User is not admin, redirecting to feedback');
                 navigate('/feedback');
             }
         } catch (err) {
+            console.error('🔑 LoginPage: Login failed:', err);
+            console.error('🔑 LoginPage: Error response:', err.response?.data);
             setError(err.response?.data?.message || 'Invalid email or password');
         } finally {
             setLoading(false);
@@ -182,11 +191,11 @@ export const LoginPage = () => {
                     {/* Register Link */}
                     <Box mt={3} textAlign="center">
                         <Typography variant="body2" color="text.secondary">
-                            Don't have an account?{' '}
+                            Need admin access?{' '}
                             <MuiLink
                                 component="button"
                                 variant="body2"
-                                onClick={() => navigate('/register')}
+                                onClick={() => navigate('/admin-register')}
                                 sx={{
                                     fontWeight: 600,
                                     textDecoration: 'none',
@@ -196,7 +205,7 @@ export const LoginPage = () => {
                                     }
                                 }}
                             >
-                                Register here
+                                Register as Admin
                             </MuiLink>
                         </Typography>
                     </Box>

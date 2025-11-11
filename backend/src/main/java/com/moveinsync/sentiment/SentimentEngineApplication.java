@@ -43,8 +43,11 @@ public class SentimentEngineApplication {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedOrigins(Arrays.asList(
             "http://localhost:3000",      // React frontend (dev)
+            "http://localhost:3001",   
+            "http://localhost:3002",    // React frontend (dev - alternate port)
             "http://localhost:8080",       // Backend (dev)
             "http://127.0.0.1:3000",
+            "http://127.0.0.1:3001",
             "http://127.0.0.1:8080"
         ));
         corsConfiguration.setAllowedMethods(Arrays.asList(

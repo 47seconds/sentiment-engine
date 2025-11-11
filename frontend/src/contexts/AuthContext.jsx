@@ -34,9 +34,16 @@ export const AuthProvider = ({ children }) => {
      * Login user
      */
     const login = async (email, password) => {
-        const user = await authService.login(email, password);
-        setUser(user);
-        return user;
+        console.log('🔐 AuthContext: Login called with email:', email);
+        try {
+            const user = await authService.login(email, password);
+            console.log('🔐 AuthContext: Login successful, user:', user);
+            setUser(user);
+            return user;
+        } catch (error) {
+            console.error('🔐 AuthContext: Login failed:', error);
+            throw error;
+        }
     };
     
     /**

@@ -22,7 +22,7 @@ VALUES
     ('emma.employee@moveinsync.com', 'Emma Wilson', 'EMPLOYEE', true, '$2a$10$3pr7kG4SqQkq7VkSP6NY0Oj3B8WRRPaZ2Kp6RQ7SdY8nCwN41iWoW', NOW(), NULL),
     ('oliver.employee@moveinsync.com', 'Oliver Martinez', 'EMPLOYEE', true, '$2a$10$3pr7kG4SqQkq7VkSP6NY0Oj3B8WRRPaZ2Kp6RQ7SdY8nCwN41iWoW', NOW(), NULL),
     -- Admin users
-    ('admin@moveinsync.com', 'Admin User', 'ADMIN', true, '$2a$10$8IaYq8uT5TadBDWzxub6MOcY9hTCSpuP0oQbZLUqKpVwog7GToCCu', NOW(), NULL),
+    ('admin@moveinsync.com', 'Admin User', 'ADMIN', true, '$2a$12$M.SrK0Xi3SZ5F8OGijdUX.3HgKUubiQNViPo6Y8XTyOMP9e6c/.di', NOW(), NULL),
     ('manager@moveinsync.com', 'Manager User', 'MANAGER', true, '$2a$10$8IaYq8uT5TadBDWzxub6MOcY9hTCSpuP0oQbZLUqKpVwog7GToCCu', NOW(), NULL)
 ON CONFLICT (email) DO NOTHING;
 

@@ -1,4 +1,5 @@
-import api from './api';
+import { api } from './api';
+import apiClient from './api';
 
 const TOKEN_KEY = 'jwt_token';
 const USER_KEY = 'user_info';
@@ -36,23 +37,39 @@ export const authService = {
     //     return fakeUser;
     // }
         try {
+            console.log('🔐 Attempting login for:', email);
+            console.log('🔐 Password length:', password.length);
+            console.log('🔐 Request payload:', { email, password: '[REDACTED]' });
+            console.log('🔐 API Base URL:', 'http://localhost:8080/api');
+            
             const response = await api.post('/auth/login', { email, password });
-            // api.post returns response.data which is the ApiResponse wrapper:
+            console.log('✅ Login response:', response);
+            console.log('✅ Response structure:', {
+                data: response.data,
+                dataType: typeof response.data,
+                dataKeys: Object.keys(response.data || {}),
+                hasDataData: !!response.data?.data,
+                dataDataKeys: Object.keys(response.data?.data || {})
+            });
+            
+            // api.post returns the ApiResponse directly:
             // { success, message, data: { token, tokenType, expiresIn, user } }
-            // Extract token and user from response.data.data
-            const { token, user } = response.data.data;
+            // Extract token and user from response.data (not response.data.data)
+            const { token, user } = response.data;
             
             // Store token and user info
             localStorage.setItem(TOKEN_KEY, token);
             localStorage.setItem(USER_KEY, JSON.stringify(user));
             
             // Set token in API client for future requests
-            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             
             console.log('Login successful:', user);
             return user;
         } catch (error) {
-            console.error('Login failed:', error.response?.data?.message || error.message);
+            console.error('❌ Login failed:', error);
+            console.error('❌ Error response:', error.response?.data);
+            console.error('❌ Error status:', error.response?.status);
             throw error;
         }
     },
@@ -76,7 +93,7 @@ export const authService = {
     logout() {
         localStorage.removeItem(TOKEN_KEY);
         localStorage.removeItem(USER_KEY);
-        delete api.defaults.headers.common['Authorization'];
+        delete apiClient.defaults.headers.common['Authorization'];
         console.log('User logged out');
     },
     
@@ -125,7 +142,7 @@ export const authService = {
     initialize() {
         const token = this.getToken();
         if (token) {
-            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             console.log('Auth initialized with existing token');
         }
     }

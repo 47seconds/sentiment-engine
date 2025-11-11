@@ -1,0 +1,90 @@
+==================== IDE & EDITOR ====================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+==================== JAVA & MAVEN ====================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+*.jar
+*.war
+*.rar
+*.zip
+*.gz
+
+==================== NODE & REACT ====================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.eslintcache
+dist/
+build/
+.cache/
+.parcel-cache/
+.next/
+out/
+
+==================== ENVIRONMENT & SECRETS ====================
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+*.pem
+*.key
+*.crt
+certificates/
+
+==================== LOGS ====================
+*.log
+logs/
+.log.
+npm-debug.log
+
+==================== DATABASES ====================
+*.db
+*.sqlite
+*.sqlite3
+pg_data/
+redis_data/
+
+==================== DOCKER ====================
+docker-compose.override.yml
+.dockerignore
+
+==================== SYSTEM & OS ====================
+Thumbs.db
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+.DS_Store
+.DS_Store?
+*.stackdump
+
+==================== MISC ====================
+.cache/
+*.bak
+*.tmp
+.venv/
+venv/
+ENV/
+env/

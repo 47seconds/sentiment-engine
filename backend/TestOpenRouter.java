@@ -6,7 +6,7 @@ import java.util.*;
 
 public class TestOpenRouter {
     public static void main(String[] args) throws Exception {
-        String apiKey = "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";
+        String apiKey = System.getenv("OPEN_ROUTER_API_KEY");
         String model = "mistralai/mistral-7b-instruct:free";
         
         System.out.println("Testing OpenRouter API...");
